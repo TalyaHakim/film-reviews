@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'; 
 
-function App() {
+import './App.css';
+import Home from './Components/Home';
+import Movies from './Components/Movies';
+import Navbar from './Components/Navbar';
+import Search from './Components/Search';
+import CommentState from './Context/comments/commentState';
+
+import GithubState from './Context/githubApi/githubState';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GithubState>
+      <CommentState>
+      <Router>
+      <Navbar sticky='top'/>
+      <div> 
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route exact path='/search' element= {<Search/>}/>
+          <Route exact path='/movies' element= {<Movies/>}/>
+        </Routes>
+     </div>
+      </Router>
+      </CommentState>
+    </GithubState>
+    
   );
 }
 
