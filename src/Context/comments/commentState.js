@@ -1,26 +1,31 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { 
-    // GET_COMMENT,
+    // GET_COMMENTS,
     ADD_COMMENT
  } from '../types';
 import CommentContext from '../comments/commentContext';
+import CommentReducer from './commentReducer';
 
 const CommentState = props => {
+
+    const getStateStore = () => {
+        
+        const commetStore = localStorage.getItem('commetStore');
+        return commetStore ? JSON.parse('commetStore') : []
+    }
+
+    getStateStore()
 
     const initialState = {
         comments: [],
     }
 
-    const [state, dispatch] = useReducer(CommentState, initialState);
+    const [state, dispatch] = useReducer(CommentReducer, initialState);
 
-    // get comments
-    // const getComments = () => {
-    //     dispatch({
-    //         type: GET_COMMENT,
-    //         payload: 
-    //     })
-    // }
-
+    useEffect(() => {
+        localStorage.setItem('commetStore', JSON.stringify(state));
+    }, [state])
+    
     // add comment
     const addReplay = (comment) => {
         dispatch({
@@ -34,6 +39,7 @@ const CommentState = props => {
     value = {
         {
             comments: state.comments,
+            getStateStore,
             addReplay
         }
     }>
