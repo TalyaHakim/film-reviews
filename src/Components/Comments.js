@@ -4,6 +4,7 @@ import CommentContext from '../Context/comments/commentContext';
 const Comments = ({movieId}) => {
 
   const commentContext = useContext(CommentContext);
+  const {comments} = commentContext;
 
   const [comment, setComment] = useState(
     {
@@ -17,7 +18,7 @@ const Comments = ({movieId}) => {
   const replay = e => {
     e.preventDefault();
     commentContext.addReplay(comment);
-    console.log(comment);
+    setComment({...comment, content: ''});
   }
 
   const onChange = e => {
@@ -34,16 +35,18 @@ const Comments = ({movieId}) => {
             onChange={onChange}/>
             <span className="input-group-append">
                 <button className="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" 
-                onClick={replay}>
+                disabled={!comment.content} onClick={replay}>
                 <i className="bi bi-send"></i>
                 </button>
             </span>
       </div>
     <ul className="list-group list-group-flush">
+      {comments.map((comment) => (
         <li className="list-group-item">
             <strong>User name</strong>
-            <p>content</p>
+            <p>{comment.content}</p>
         </li>
+      ))} 
     </ul>
     </>
     
