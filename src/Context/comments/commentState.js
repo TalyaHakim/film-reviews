@@ -9,7 +9,6 @@ import CommentReducer from './commentReducer';
 const CommentState = props => {
 
     const getStateStore = () => {
-        
         const commetStore = localStorage.getItem('commetStore');
         return commetStore ? JSON.parse('commetStore') : []
     }
