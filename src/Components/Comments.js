@@ -42,7 +42,7 @@ const Comments = ({movieId}) => {
       </div>
     <ul className="list-group list-group-flush">
       {comments.map((comment) => (
-        <li className="list-group-item">
+        <li key={comment.createdAt} className="list-group-item">
             <strong>User name</strong>
             <p>{comment.content}</p>
         </li>

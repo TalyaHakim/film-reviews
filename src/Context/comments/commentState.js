@@ -9,18 +9,15 @@ import CommentReducer from './commentReducer';
 const CommentState = props => {
 
     const getStateStore = () => {
-        
         const commetStore = localStorage.getItem('commetStore');
-        return commetStore ? JSON.parse('commetStore') : []
+        return commetStore ? JSON.parse(commetStore) : initialState
     }
-
-    getStateStore()
 
     const initialState = {
         comments: [],
     }
 
-    const [state, dispatch] = useReducer(CommentReducer, initialState);
+    const [state, dispatch] = useReducer(CommentReducer, getStateStore());
 
     useEffect(() => {
         localStorage.setItem('commetStore', JSON.stringify(state));
