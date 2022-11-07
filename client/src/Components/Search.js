@@ -5,13 +5,12 @@ const Search = () => {
 
   const githubContext = useContext(GithubContext);
 
-  const [text, setText] = useState('') 
+  const [text, setText] = useState('');
 
   const onClick = e => {
     e.preventDefault();
     githubContext.searchMovie(text);
-    setText('')
-    console.log(text);
+    setText('');
   }
 
   const onChange = e => {

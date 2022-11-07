@@ -1,0 +1,44 @@
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
+img {
+    margin: 9px;
+}
+
+/* Icons */
+
+.user {
+    font-size: 25px;
+}
+.starsIcon {
+    margin: 5px;
+    float: left;
+    font-size: 25px;
+}
+.iconSize {
+    font-size: medium;
+}
+.iconsMvItem {
+    padding: 3%;
+}
+ul li {
+    display: inline-block;
+    font-size: 18px;
+    padding: 13px;
+}
+input.form-control {
+    width: 360px;
+}
+div.col {
+    display: inline-block;
+    padding: 20px;
+}
+p.alert {
+    border: 2px solid #229b63;
+    border-radius: 0.375rem;
+    background-color: #229b63;
+    text-align: center;
+    color: white;
+    font-size: larger;
+}

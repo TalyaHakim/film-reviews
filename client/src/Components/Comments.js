@@ -1,6 +1,7 @@
 import React, {useContext, useState} from 'react';
 import CommentContext from '../Context/comments/commentContext';
 
+
 const Comments = ({movieId}) => {
 
   const commentContext = useContext(CommentContext);
@@ -8,21 +9,29 @@ const Comments = ({movieId}) => {
 
   const [comment, setComment] = useState(
     {
-          user_name: "",
-          content: "",
-          createdAt: "",
-          onMovie: movieId
+        user_name: "",
+        content: "",
+        createdAt: "",
+        onMovie: movieId
     }
   );
 
-  const replay = e => {
+  const addComment = e => {
     e.preventDefault();
     commentContext.addReplay(comment);
     setComment({...comment, content: ''});
   }
 
+  const postComments = () => {
+    return comments.filter(comment => comment.onMovie === movieId)
+  }
+
   const onChange = e => {
-    setComment({...comment, content: e.target.value, createdAt: new Date().toString()});
+    setComment({
+      ...comment, 
+      content: e.target.value, 
+      createdAt: new Date().toString()
+    });
   }
 
   return (
@@ -35,21 +44,21 @@ const Comments = ({movieId}) => {
             onChange={onChange}/>
             <span className="input-group-append">
                 <button className="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" 
-                disabled={!comment.content} onClick={replay}>
+                disabled={!comment.content} onClick={addComment}>
                 <i className="bi bi-send"></i>
                 </button>
             </span>
       </div>
     <ul className="list-group list-group-flush">
-      {comments.map((comment) => (
-        <li key={comment.createdAt} className="list-group-item">
+      {postComments().map((comment, index) => (
+        <li key={index} className="list-group-item">
             <strong>User name</strong>
             <p>{comment.content}</p>
+            <small>{comment.createdAt}</small>
         </li>
       ))} 
     </ul>
     </>
-    
   )
 }
 

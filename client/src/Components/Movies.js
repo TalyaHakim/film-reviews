@@ -9,14 +9,14 @@ const Movies = () => {
   const { movies } = githubContext;
 
   useEffect(() => {
-    githubContext.fetchDada()
+    githubContext.fetchDada();
     // eslint-disable-next-line
-}, []);
+  }, []);
 
   return (
     <Row xs={1} md={2} className="g-4">
       {movies.map((movie, index) => (
-        <MovieItem key={index} movie={movie} />
+        <MovieItem key={index} movie={movie}/>
       ))}
     </Row>
   )
